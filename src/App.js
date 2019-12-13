@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
 import Customer from './components/Customer';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
 const customers = [
   {
@@ -49,21 +54,21 @@ class App extends Component {
   render() {
     return(
       <div>
-        {
-          customers.map(c => {
-            return (
-              <Customer 
-                key={c.id}
-                id={c.id}
-                image={c.image}
-                name={c.name}
-                birthday={c.birthday}
-                gender={c.gender}
-                job={c.job}
-              />
-            )
-          })
-        }
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>ID</TableCell>
+              <TableCell>Image</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>Birthday</TableCell>
+              <TableCell>Genger</TableCell>
+              <TableCell>Job</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {customers.map(c => { return ( <Customer key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job} />)})}
+          </TableBody>
+        </Table>
       </div>
     )
   }
