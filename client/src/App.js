@@ -15,7 +15,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { fade } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 
@@ -140,7 +140,6 @@ class App extends Component {
 
   progress = () => {
     const { completed } = this.state;
-    console.log('progress');
     this.setState({ completed: completed >= 100 ? 0 : completed + 1 });
   }
 
@@ -160,7 +159,7 @@ class App extends Component {
       });
     }
     const { classes } = this.props;
-    const cellList = ["ID","Image","Name","Birthday","Genger","Job","Setting"];
+    const cellList = ["ID","Image","Name","Birthday","Genger","Job","Delete", "Update"];
 
     return(
       <div className={classes.root}>
@@ -202,8 +201,8 @@ class App extends Component {
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
-                {cellList.map( c => {
-                  return <TableCell className={classes.tableHead}>{c}</TableCell>
+                {cellList.map( (c, index) => {
+                  return <TableCell key={index} className={classes.tableHead}>{c}</TableCell>
                 })}
               </TableRow>
             </TableHead>
@@ -212,7 +211,6 @@ class App extends Component {
               this.state.customers 
               ? 
                 filteredComponents(this.state.customers)
-                // this.state.customers.map(c => { return ( <Customer stateRefresh={this.stateRefresh} key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job} />)}) 
               : 
                 <TableRow>
                   <TableCell colSpan="6" align="center">
